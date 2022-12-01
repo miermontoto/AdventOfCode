@@ -18,15 +18,13 @@ int main() {
     cout << "star 2: " << star_two() << endl;
 }
 
-int star_one()
-{
+int star_one() {
     int max = 0;
     int sum = 0;
 
     ifstream input(INPUT_FILE);
     string line;
-    while (getline(input, line))
-    {
+    while (getline(input, line)) {
         try {
             sum += stoi(line);
         } catch (invalid_argument e) {
@@ -45,8 +43,7 @@ int star_two() {
 
     ifstream input(INPUT_FILE);
     string line;
-    while (getline(input, line))
-    {
+    while (getline(input, line)) {
         try {
             sum += stoi(line);
         } catch (invalid_argument e) {
