@@ -10,14 +10,6 @@ using namespace std;
 #define INPUT_FILE "input/1"
 #define TOP_ELVES 3
 
-int star_one();
-int star_two();
-
-int main() {
-    cout << "star 1: " << star_one() << endl;
-    cout << "star 2: " << star_two() << endl;
-}
-
 int star_one() {
     int max = 0;
     int sum = 0;
@@ -60,4 +52,9 @@ int star_two() {
     }
 
     return accumulate(top, top + TOP_ELVES, 0);
+}
+
+int main() {
+    cout << "star 1: " << star_one() << endl;
+    cout << "star 2: " << star_two() << endl;
 }

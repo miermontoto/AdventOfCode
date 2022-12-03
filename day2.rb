@@ -1,4 +1,4 @@
-# Day 2 of Advent Of Code
+# Advent of Code 2022, day 2
 
 def star_one(input)
     opponent_moves = ['A', 'B', 'C']
@@ -18,11 +18,8 @@ def star_one(input)
         equal = equal_moves[opponent_index] # obtain the drawing move against their move
 
         # get result value
-        if mine === winning then
-            total += 6
-        elsif mine === equal then
-            total += 3
-        end
+        if mine === winning then total += 6
+        elsif mine === equal then total += 3 end
     end
 
     return total
@@ -44,13 +41,9 @@ def star_two(input)
         total += 3 * equal_moves.index(result) # add result to value
 
         # add move value
-        if result === 'Y' then
-            total += opponent_index + 1
-        elsif result === 'Z' then
-            total += equal_moves.index(winning_moves[opponent_index]) + 1
-        else
-            total += equal_moves.index(losing_moves[opponent_index]) + 1
-        end
+        if result === 'Y' then total += opponent_index + 1
+        elsif result === 'Z' then total += equal_moves.index(winning_moves[opponent_index]) + 1
+        else total += equal_moves.index(losing_moves[opponent_index]) + 1 end
     end
 
     return total
