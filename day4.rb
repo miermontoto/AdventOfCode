@@ -8,14 +8,22 @@ def get_ranges(pair)
     return first_range, second_range
 end
 
+class Range
+    def overlaps?(other)
+        return (self.cover? other.begin or other.cover? self.begin)
+    end
+
+    def encapsulates?(other)
+        return (self.begin <= other.begin and other.end <= self.end)
+    end
+end
+
 def star_one(input)
     total = 0
 
     input.each_line do |pair|
         first, second = get_ranges(pair)
-
-        if first.cover? second.begin and first.cover? second.end then total += 1
-        elsif second.cover? first.begin and second.cover? first.end then total += 1 end
+        total += 1 if first.encapsulates? second or second.encapsulates? first
     end
 
     return total
@@ -26,8 +34,7 @@ def star_two(input)
 
     input.each_line do |pair|
         first, second = get_ranges(pair)
-
-        if first.cover? second.begin or second.cover? first.begin then total += 1 end
+        total += 1 if first.overlaps? second or second.overlaps? first
     end
 
     return total
