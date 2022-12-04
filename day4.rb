@@ -34,7 +34,7 @@ def star_two(input)
 
     input.each_line do |pair|
         first, second = get_ranges(pair)
-        total += 1 if first.overlaps? second or second.overlaps? first
+        total += 1 if first.overlaps? second
     end
 
     return total
