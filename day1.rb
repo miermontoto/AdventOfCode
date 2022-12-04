@@ -21,14 +21,12 @@ def star_two(input)
     input.each_line do |line|
         if line === "\n" then
             if sum > top.min then
-                top.pop
-                top.push sum
+                top[top.length - 1] = sum
                 top.sort!.reverse!
             end
             sum = 0
             next
         end
-
         sum += line.to_i
     end
 
