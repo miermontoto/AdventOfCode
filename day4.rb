@@ -12,10 +12,6 @@ class Range
     def overlaps?(other)
         return (self.cover? other.begin or other.cover? self.begin)
     end
-
-    def encapsulates?(other)
-        return (self.begin <= other.begin and other.end <= self.end)
-    end
 end
 
 def star_one(input)
@@ -23,7 +19,7 @@ def star_one(input)
 
     input.each_line do |pair|
         first, second = get_ranges(pair)
-        total += 1 if first.encapsulates? second or second.encapsulates? first
+        total += 1 if first.cover? second or second.cover? first
     end
 
     return total
