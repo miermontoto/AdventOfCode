@@ -1,3 +1,5 @@
+# Advent of Code 2022, day 5
+
 def get_ranges(pair)
     first = pair.split(',')[0].split('-').map(&:to_i)
     second = pair.split(',')[1].split('-').map(&:to_i)

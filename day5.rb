@@ -1,6 +1,9 @@
+# Advent of Code 2022, day 5
+
+# utility functions to solve both parts
 def read_grid(input)
     lines = input.lines
-    cols = lines.pop.strip().split('   ').length
+    cols = lines.pop.strip.split('   ').length
     grid = Array.new(cols) { [] }
 
     lines.each do |line|
@@ -29,6 +32,7 @@ def read_info(input)
     return read_grid(grid), read_commands(commands)
 end
 
+# actual resolution of both parts
 def star_one(input)
     grid, commands = read_info(input)
 
@@ -49,6 +53,7 @@ def star_two(input)
     grid.map(&:last).join
 end
 
+# main: read input and print results
 input = File.read("input/5")
 puts "star one: #{star_one(input)}"
 puts "star two: #{star_two(input)}"
