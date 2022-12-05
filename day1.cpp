@@ -56,5 +56,5 @@ int star_two() {
 
 int main() {
     cout << "star one: " << star_one() << endl;
-    cout << "star two: " << star_two();
+    cout << "star two: " << star_two() << endl;
 }

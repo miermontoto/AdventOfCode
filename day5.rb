@@ -50,6 +50,5 @@ def star_two(input)
 end
 
 input = File.read("input/5")
-print "star one: ", star_one(input)
-puts
-print "star two: ", star_two(input)
+puts "star one: #{star_one(input)}"
+puts "star two: #{star_two(input)}"

@@ -52,6 +52,5 @@ end
 
 # Read input from file
 input = File.read("input/2")
-print "star one: ", star_one(input)
-puts
-print "star two: ", star_two(input)
+puts "star one: #{star_one(input)}"
+puts "star two: #{star_two(input)}"
