@@ -1,6 +1,6 @@
 # Advent of Code 2022, day 5
 
-# utility functions to solve both parts
+# --- utility functions to solve both parts ---
 def read_grid(input)
     lines = input.lines
     cols = lines.pop.strip.split('   ').length
@@ -13,7 +13,7 @@ def read_grid(input)
         end
     end
 
-    grid.each(&:reverse!)
+    grid.map(&:reverse!)
 end
 
 def read_commands(input)
@@ -32,22 +32,29 @@ def read_info(input)
     return read_grid(grid), read_commands(commands)
 end
 
-# actual resolution of both parts
+# --- actual resolution of both parts ---
 def star_one(input)
-    grid, commands = read_info(input)
-
-    commands.each do |iter, src, dest|
-        iter.times { grid[dest] << grid[src].pop }
-    end
-
-    grid.map(&:last).join
+    star(input,
+        lambda do |grid, iter, src, dest|
+            iter.times { grid[dest].push(grid[src].pop) }
+        end
+    )
 end
 
 def star_two(input)
+    star(input,
+        lambda do |grid, iter, src, dest|
+            grid[dest].concat(grid[src].pop(iter))
+        end
+    )
+end
+
+# generic function to solve both parts
+def star(input, lambda)
     grid, commands = read_info(input)
 
     commands.each do |iter, src, dest|
-        grid[dest].concat(grid[src].pop(iter))
+        lambda.call(grid, iter, src, dest)
     end
 
     grid.map(&:last).join
