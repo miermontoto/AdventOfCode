@@ -3,6 +3,8 @@ require 'uri'
 require 'date'
 
 day = ARGV[0] || (puts "Usage: ruby generate.rb <day>"; exit)
+session = ENV['AOC_session'] || (puts "Missing 'session' cookie."; exit)
+ru = ENV['AOC_ru'] || (puts "Missing 'ru' cookie.'"; exit)
 
 # Generate the structure of a ruby file for the day
 File.open("day#{day}.rb", "w") do |file|
@@ -20,10 +22,6 @@ File.open("day#{day}.rb", "w") do |file|
 end
 
 # Download the input for the day using personal cookie
-# Read cookie from enviroment variable
-session = ENV['AOC_session'] || (puts "Missing 'session' cookie."; exit)
-ru = ENV['AOC_ru'] || (puts "Missing 'ru' cookie.'"; exit)
-
 uri = URI.parse("https://adventofcode.com/#{Time.now.year}/day/#{day}/input")
 http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true
