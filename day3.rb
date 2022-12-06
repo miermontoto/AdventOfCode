@@ -31,7 +31,7 @@ def star_two(input)
         third = group[2].chars
 
         first.each do |item|
-            next if item === "\n"
+            next if item == "\n"
             if second.include? item and third.include? item then
                 total += get_letter_value(item)
                 break

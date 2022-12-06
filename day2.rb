@@ -22,8 +22,8 @@ def star_one(input)
         drawing = $moves['draw'][index] # obtain the drawing move against their move
 
         # get result value
-        if mine === winning then total += 6
-        elsif mine === drawing then total += 3 end
+        if mine == winning then total += 6
+        elsif mine == drawing then total += 3 end
         # if the move is losing, no value is added.
     end
 
@@ -42,8 +42,8 @@ def star_two(input)
         total += 3 * $moves['draw'].index(result) # add result to value (0 = loss, 3 = draw, 6 = win)
 
         # add move value
-        if result === 'Y' then total += index + 1
-        elsif result === 'Z' then total += $moves['draw'].index($moves['win'][index]) + 1
+        if result == 'Y' then total += index + 1
+        elsif result == 'Z' then total += $moves['draw'].index($moves['win'][index]) + 1
         else total += $moves['draw'].index($moves['lose'][index]) + 1 end
     end
 

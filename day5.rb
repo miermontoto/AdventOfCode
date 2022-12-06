@@ -9,7 +9,7 @@ def read_grid(input)
     lines.each do |line|
         (1..line.length).step(4) do |pos|
             box = line[pos]
-            grid[(pos - 1) / 4].push(box) unless box === ' '
+            grid[(pos - 1) / 4].push(box) unless box == ' '
         end
     end
 

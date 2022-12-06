@@ -3,7 +3,7 @@ def star_one(input)
     sum = 0
 
     input.each_line do |line|
-        if line === "\n" then
+        if line == "\n" then
             max = [max, sum].max
             sum = 0
             next
@@ -19,7 +19,7 @@ def star_two(input)
     sum = 0
 
     input.each_line do |line|
-        if line === "\n" then
+        if line == "\n" then
             if sum > top.min then
                 top[top.length - 1] = sum
                 top.sort!.reverse!
