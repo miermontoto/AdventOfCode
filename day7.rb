@@ -23,22 +23,13 @@ class ResolvedDir
     end
 
     def children()
-        temp = []
-        @content.each do |file|
-            temp.push file if file.is_a? ResolvedDir
-        end
-        temp
+        @content.select { |file| file.is_a? ResolvedDir }
     end
 
     def all_children()
-        temp = []
-        @content.each do |file|
-            if file.is_a? ResolvedDir
-                temp.push file
-                temp.concat file.all_children
-            end
-        end
-        temp
+        self.children.map do |dir|
+            [dir, dir.all_children]
+        end.flatten
     end
 
     def parent()
@@ -46,11 +37,7 @@ class ResolvedDir
     end
 
     def size()
-        size = 0
-        @content.each do |file|
-            size += file.size
-        end
-        size
+        @content.map(&:size).sum
     end
 end
 
