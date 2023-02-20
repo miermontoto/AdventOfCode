@@ -11,30 +11,57 @@ def star_one(input)
         number = line.split.last.to_i
 
         case instruction
-        when 'noop'
-            add = 1
-        when 'addx'
-            reg += number
-            add = 2
+            when 'noop'
+                cycle += 1
+            when 'addx'
+                reg += number
+                cycle += 2
         end
 
-        cycle += add
-        target -= add
-        if target <= 0 then
-            if instruction == 'addx' and target == -1 then
-                sum += (reg - number) * cycle
+        if cycle >= target then
+            if instruction == 'addx' and target != cycle then
+                sum += (reg - number) * target
             else
-                sum += reg * cycle
+                sum += reg * target
             end
-            target = 40
+            target += 40
         end
     end
     sum
 end
 
+def draw(cycle, pos)
+    head = cycle % 40
+    ((head >= pos) and (head <= (pos + 2))) ? print("#") : print(".")
+    if head == 0 then puts end
+
+end
+
 def star_two(input)
+    cycle = 1
+    pos = 1
+
+    number = 0
+    instruction = "null"
+
+    i = 0
+    while i < input.lines.length do
+        draw(cycle, pos)
+        if instruction == "addx" then
+            pos += number
+            instruction = "null"
+        else
+            line = input.lines[i]
+            instruction = line.split.first
+            number = line.split.last.to_i
+            i += 1
+        end
+
+        cycle += 1
+    end
 end
 
 input = File.read("input/10")
 puts "star one: #{star_one(input)}"
-puts "star two: #{star_two(input)}"
+puts "star two:\n"
+star_two(input)

@@ -100,5 +100,6 @@ def star_two(input)
 end
 
 input = File.read("input/9")
-puts "star one: #{star_one(input)}"
+puts "star one: #{star_one(input)noop 0
+(2) noop 0}"
 puts "star two: #{star_two(input)}" # TODO: fix
