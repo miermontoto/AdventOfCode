@@ -2,12 +2,19 @@ require 'net/http'
 require 'uri'
 require 'date'
 
-day = ARGV[0] || (puts "Usage: ruby generate.rb <day>"; exit)
+# read arguments or use defaults
 session = ENV['AOC_session'] || (puts "Missing 'session' cookie."; exit)
+day = ARGV[0] || Time.now.day
+year = ARGV[1] || Time.now.year
 
-# Generate the structure of a ruby file for the day
-File.open("day#{day}.rb", "w") do |file|
-    file.puts "# Advent of Code 2022, day #{day}"
+# generate folders if they don't already exist
+Dir.mkdir("#{year}") unless File.directory?("#{year}")
+Dir.mkdir("#{year}/input") unless File.directory?("#{year}/input")
+
+# generate the structure of a ruby file for the day
+File.open("#{year}/day#{day}.rb", "w") do |file|
+    file.puts "# advent of code #{year}, day #{day}"
+    file.puts "# solution by miermontoto"
     file.puts
     file.puts "def star_one(input)"
     file.puts "end"
@@ -21,10 +28,10 @@ File.open("day#{day}.rb", "w") do |file|
 end
 
 # Download the input for the day using personal cookie
-uri = URI.parse("https://adventofcode.com/#{Time.now.year}/day/#{day}/input")
+uri = URI.parse("https://adventofcode.com/#{year}/day/#{day}/input")
 http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true
 request = Net::HTTP::Get.new(uri.request_uri)
 request['Cookie'] = "session=#{session};"
 response = http.request(request)
-File.write("input/#{day}", response.body)
+File.write("#{year}/input/#{day}", response.body)
