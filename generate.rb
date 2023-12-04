@@ -14,7 +14,7 @@ Dir.mkdir("#{year}/input") unless File.directory?("#{year}/input")
 # generate the structure of a ruby file for the day
 File.open("#{year}/day#{day}.rb", "w") do |file|
     file.puts "# advent of code #{year}, day #{day}"
-    file.puts "# solution by miermontoto"
+    file.puts "# solution by miermontoto (mier.info)"
     file.puts
     file.puts "def star_one(input)"
     file.puts "end"
@@ -27,7 +27,7 @@ File.open("#{year}/day#{day}.rb", "w") do |file|
     file.puts "puts \"star two: \#{star_two(input)}\""
 end
 
-# Download the input for the day using personal cookie
+# download input from adventofcode.com
 uri = URI.parse("https://adventofcode.com/#{year}/day/#{day}/input")
 http = Net::HTTP.new(uri.host, uri.port)
 http.use_ssl = true
